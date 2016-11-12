@@ -1,0 +1,8 @@
+#Mon Sep 26 14:00:18 COT 2016
+operation\ selection=0
+show\ message\ names\ not\ signatures=false
+eclipse.preferences.version=1
+create\ return\ messages=false
+lifeline\ label\ display=Type Name Only
+show\ return\ message\ signature=false
+show\ operation\ signatures=false
