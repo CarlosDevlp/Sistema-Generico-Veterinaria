@@ -14,7 +14,7 @@ import javax.swing.JComponent;
  *
  * @author Carlos
  */
-public class frmRegistrarHistorialClinico extends javax.swing.JFrame {
+public class frmRegistrarHistorialClinico extends javax.swing.JFrame implements ComponentProvider {
     private final ClsRegistrarHistorialClinico mClsRegistrarHistorialClinico= new ClsRegistrarHistorialClinico(this);
     private final Map<String,JComponent> mComponentList= new HashMap();
     /**

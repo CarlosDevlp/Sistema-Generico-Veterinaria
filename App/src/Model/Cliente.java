@@ -52,7 +52,7 @@ public class Cliente extends Persona {
     }
             
     
-    public void agregarCliente(){
+    public void agregarCliente() throws Exception{
         Dao.insert("PERSONA_DNI,NOMBRES,APELLIDOS,GENERO,EDAD,TELEFONO,DIRECCION,CORREO",new String []{getDni(),getNombre(),getApellidos(),getGenero(),getEdad()+"",getTelefono(),getDireccion(),getCorreo()},"PERSONA");
         Dao.insert("PERSONA_DNI",new String[]{getDni()},"CLIENTE");
     }

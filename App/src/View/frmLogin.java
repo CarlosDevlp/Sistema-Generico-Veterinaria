@@ -54,7 +54,7 @@ public class frmLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Bienvenidos al sistema para empresas Solaris");
+        jLabel1.setText("Bienvenidos al Sistema Veterinario ");
 
         jLabel2.setText("Ingreso de Cuenta");
 

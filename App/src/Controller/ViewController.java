@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import View.ComponentProvider;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,8 +15,13 @@ import javax.swing.JOptionPane;
 abstract public class ViewController {
     
     protected  String TAG="",TAG_ERROR="";
+    protected ComponentProvider mFrmBaseView;
+    public ViewController(ComponentProvider frmBaseView){
+        mFrmBaseView=frmBaseView;
+    }
     
-    public ViewController(){}
+    public ViewController(){        
+    }
     
     protected void AlertDialog(String mensaje){
         JOptionPane.showMessageDialog(null, mensaje,TAG,JOptionPane.INFORMATION_MESSAGE);

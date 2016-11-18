@@ -102,6 +102,7 @@ public class frmMainMenu extends javax.swing.JFrame {
         smBuscarHC = new javax.swing.JMenuItem();
         mCitaMedica = new javax.swing.JMenu();
         smRegistrarCitaMedica = new javax.swing.JMenuItem();
+        smBuscarCita = new javax.swing.JMenuItem();
         mServicio = new javax.swing.JMenu();
         smGenerarConceptoBoletaVenta = new javax.swing.JMenuItem();
         mInfoSoporte = new javax.swing.JMenu();
@@ -215,6 +216,14 @@ public class frmMainMenu extends javax.swing.JFrame {
         });
         mCitaMedica.add(smRegistrarCitaMedica);
 
+        smBuscarCita.setText("Buscar Cita Médica");
+        smBuscarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                smBuscarCitaActionPerformed(evt);
+            }
+        });
+        mCitaMedica.add(smBuscarCita);
+
         jMenuBar1.add(mCitaMedica);
 
         mServicio.setText("Servicio");
@@ -290,6 +299,10 @@ public class frmMainMenu extends javax.swing.JFrame {
         mClsMainMenu.invocar("Buscar Historia Clínica");
     }//GEN-LAST:event_smBuscarHCActionPerformed
 
+    private void smBuscarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smBuscarCitaActionPerformed
+        mClsMainMenu.invocar("Buscar Cita Médica");
+    }//GEN-LAST:event_smBuscarCitaActionPerformed
+
         
     
    
@@ -346,6 +359,7 @@ public class frmMainMenu extends javax.swing.JFrame {
     private javax.swing.JMenu mUsuario;
     private javax.swing.JMenu mUsuarioConfigurar;
     private javax.swing.JMenu mUsuarioSalir;
+    private javax.swing.JMenuItem smBuscarCita;
     private javax.swing.JMenuItem smBuscarCliente;
     private javax.swing.JMenuItem smBuscarHC;
     private javax.swing.JMenuItem smBuscarMascota;

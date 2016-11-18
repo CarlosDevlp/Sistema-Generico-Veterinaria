@@ -14,7 +14,7 @@ import javax.swing.JComponent;
  *
  * @author Carlos
  */
-public class frmMantenerCliente extends javax.swing.JFrame {
+public class frmMantenerCliente extends javax.swing.JFrame implements ComponentProvider{
     private final ClsMantenerCliente mClsMantenerCliente= new ClsMantenerCliente(this);
     private final Map<String,JComponent> mComponentList= new HashMap();
        

@@ -123,6 +123,7 @@ abstract public class Dao {
         ArrayList<ArrayList<String>> cols=new ArrayList();                
         try{ 
             //ejecución  del código sql
+            
             r=Dao.DB.query("SELECT "+col+" FROM "+table+" ORDER BY "+columnToOrderBy+" DESC LIMIT 1","SELECT");
             //proceso de conversión de datos a array
             Dao.result(cols,r,col);                
@@ -146,6 +147,8 @@ abstract public class Dao {
             //nJoins
             for(int i=1;i<table.length;i++)
                 join+=" INNER JOIN "+table[i]+" ON "+Match[i-1];            
+            
+            System.out.print("SELECT "+col+" FROM "+table[0]+join+((where==null)?"":" WHERE "+where));
             r=Dao.DB.query("SELECT "+col+" FROM "+table[0]+join+((where==null)?"":" WHERE "+where),"SELECT");            
             //proceso de conversión de datos a array
             Dao.result(cols,r,col);
@@ -179,8 +182,8 @@ abstract public class Dao {
     }*/
 
     //inserción
-    public static void insert(String cols,String []values,String table){
-        try{
+    public static void insert(String cols,String []values,String table) throws Exception{
+        //try{
             String vls="";            
             for(int i=0;i<values.length;i++){
                   vls+=" '"+values[i]+"' ";
@@ -189,9 +192,9 @@ abstract public class Dao {
             }
             
           Dao.DB.query("INSERT INTO "+table+" ("+cols+") VALUES ("+vls+")","INSERT");
-        }catch(Exception err){
-            System.out.println("error Insert: "+err);
-        }
+        //}catch(Exception err){
+          //  System.out.println("error Insert: "+err);
+        //}
     }    
     
     //eliminación

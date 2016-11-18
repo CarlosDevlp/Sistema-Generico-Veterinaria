@@ -122,7 +122,7 @@ public class ClsMantenerMascota extends ViewController{
             mMascota.setNumeroHC( mTxtNumeroHC.getText());
                                          
             
-            mascota.save();
+            mascota.insert();
             
             mMascota= mascota;
             AlertDialog("¡Se ha agregado la mascota a la base de datos!");            
@@ -157,7 +157,8 @@ public class ClsMantenerMascota extends ViewController{
                 mMascota.setEspecie(  mCmbEspecie.getSelectedItem().toString() );
                 mMascota.setRaza(  mTxtRaza.getText() );
                 mMascota.setColor(  mTxtColor.getText() );
-                                
+                
+                
                 mMascota.update();
                 
                 
@@ -169,10 +170,10 @@ public class ClsMantenerMascota extends ViewController{
                 
                 
             }catch(NullPointerException  err){            
-                System.out.println("ClsMantenerMascota: "+err);
+                System.out.println(TAG_ERROR+": "+err);
                 AlertDialogError("Error con el servidor"); 
             }catch(Exception err2){
-                System.out.println("ClsMantenerMascota: "+err2);
+                System.out.println(TAG_ERROR+": "+err2);
                 AlertDialogError("Error con el servidor"); 
             }
         }else

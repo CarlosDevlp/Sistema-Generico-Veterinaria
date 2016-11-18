@@ -6,6 +6,7 @@
 package Controller;
 
 import Model.Dao;
+import View.frmBuscarCita;
 import View.frmBuscarCliente;
 import View.frmBuscarHistoriaClinica;
 import View.frmBuscarMascota;
@@ -36,7 +37,7 @@ public class ClsMainMenu {
         mFormList.put("Buscar Historia Clínica",new frmBuscarHistoriaClinica());
         mFormList.put("Generar Concepto de boleta de venta",new frmGenerarConceptoComprobantePago());
         mFormList.put("Registrar Cita Médica",new frmRegistrarCita());
-        
+        mFormList.put("Buscar Cita Médica",new frmBuscarCita());
                
     }
     

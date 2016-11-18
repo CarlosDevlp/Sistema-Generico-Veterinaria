@@ -8,13 +8,14 @@ import View.Alternatives.frmAgregarDistribuidor;
 import Model.Alternatives.Market;
 import Model.Alternatives.Distribuidor;
 import java.util.*;
+import javax.swing.JComponent;
 import javax.swing.table.*;
-import javax.swing.*;
+
 /**
  *
  * @author carlos
  */
-public class frmBuscarCliente extends javax.swing.JFrame {
+public class frmBuscarCliente extends javax.swing.JFrame implements ComponentProvider{
     //mis variablaes
     private DefaultTableModel _tbModel;   
     public static ArrayList<javax.swing.JFrame> frms= new ArrayList();    
@@ -251,4 +252,9 @@ public class frmBuscarCliente extends javax.swing.JFrame {
     private javax.swing.JTable tbClientes;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public JComponent getComponentById(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

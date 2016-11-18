@@ -16,7 +16,7 @@ import javax.swing.JComponent;
  *
  * @author Carlos
  */
-public class frmMantenerMascota extends javax.swing.JFrame {
+public class frmMantenerMascota extends javax.swing.JFrame implements ComponentProvider{
     private final ClsMantenerMascota mClsMantenerMascota= new ClsMantenerMascota(this);    
     private final Map<String,JComponent> mComponentList= new HashMap();
     /**

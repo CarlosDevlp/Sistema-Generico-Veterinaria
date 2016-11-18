@@ -101,7 +101,7 @@ public class HistoriaClinica {
     
     
     
-    public void insert(){
+    public void insert() throws Exception{
         Dao.insert("MASCOTA_ID_MASCOTA,NUTRICION,ESTILO_VIDA,TEMPERATURA,PULSO,ESTADO_HIDRATACION,FRECUENCIA_CARDIACA,FRECUENCIA_RESPIRATORIA",
                    new String[]{mMascotaId,mNutricion,mEstiloVida,mTemperatura,mPulso,mEstadoHidratacion,mFrecuenciaCardiaca,mFrecuenciaRespiratoria},
                    "HISTORIA_CLINICA");

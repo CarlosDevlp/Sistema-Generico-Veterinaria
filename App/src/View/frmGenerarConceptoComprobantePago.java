@@ -14,7 +14,7 @@ import javax.swing.JComponent;
  *
  * @author Carlos
  */
-public class frmGenerarConceptoComprobantePago extends javax.swing.JFrame {
+public class frmGenerarConceptoComprobantePago extends javax.swing.JFrame implements ComponentProvider {
     private final ClsGenerarConceptoComprobantePago mClsGenerarConceptoComprobantePago= new ClsGenerarConceptoComprobantePago(this);
     private final Map<String,JComponent> mComponentList= new HashMap();
     /**

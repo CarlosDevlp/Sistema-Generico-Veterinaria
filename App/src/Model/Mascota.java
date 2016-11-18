@@ -123,7 +123,7 @@ public class Mascota {
     
     
     
-    public void save(){          
+    public void insert() throws Exception{   
         Dao.insert("NOMBRE,PROPIETARIO_DNI,GENERO,EDAD,ESPECIE,RAZA,COLOR,NUMERO_HC", new String[]{mNombre,mPropietarioDNI,mGenero,mEdad+"",mEspecie,mRaza,mColor,mNumeroHC}, "MASCOTA");
     }
     

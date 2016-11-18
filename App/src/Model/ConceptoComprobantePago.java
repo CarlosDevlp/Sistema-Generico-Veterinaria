@@ -81,7 +81,7 @@ public class ConceptoComprobantePago {
     }
 
     //gurdar concepto en la base de datos
-    public void insert(){
+    public void insert() throws Exception{
         Dao.insert("IGV,MONTO_TOTAL,SERVICIO_ID_SERVICIO,MASCOTA_ID_MASCOTA,ID_CLIENTE,ESTADO",new String[]{mIgv,mMontoTotal,mServicioId,mMascotaId,mClienteId,"0"},"CONCEPTO_DE_COMPROBANTE_DE_PAGO");
     }
     

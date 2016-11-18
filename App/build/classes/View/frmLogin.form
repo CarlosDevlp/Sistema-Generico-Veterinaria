@@ -95,7 +95,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Bienvenidos al sistema para empresas Solaris"/>
+        <Property name="text" type="java.lang.String" value="Bienvenidos al Sistema Veterinario "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
