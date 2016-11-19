@@ -36,10 +36,11 @@ public class frmMantenerMascota extends javax.swing.JFrame implements ComponentP
         mComponentList.put("mascota_especie", cmbEspecie);
         mComponentList.put("mascota_raza", txtRaza);
         mComponentList.put("mascota_color", txtColor);        
-        mComponentList.put("mascota_numerohc",txtHC);
         
         mComponentList.put("mascota_btnagregar", btnAgregar);
         mComponentList.put("mascota_btnactualizar", btnActualizar);
+        
+
     }
 
     /**
@@ -73,9 +74,6 @@ public class frmMantenerMascota extends javax.swing.JFrame implements ComponentP
         cmbEspecie = new javax.swing.JComboBox<>();
         lbl3 = new javax.swing.JLabel();
         txtColor = new javax.swing.JTextField();
-        txtHC = new javax.swing.JTextField();
-        lbl4 = new javax.swing.JLabel();
-        btnRegistrarHC = new javax.swing.JButton();
 
         setTitle("Mantener Mascota");
         setBackground(new java.awt.Color(255, 255, 255));
@@ -161,10 +159,6 @@ public class frmMantenerMascota extends javax.swing.JFrame implements ComponentP
 
         lbl3.setText("Color");
 
-        lbl4.setText("Número HC");
-
-        btnRegistrarHC.setText("Registrar H.C");
-
         javax.swing.GroupLayout pnlFormLayout = new javax.swing.GroupLayout(pnlForm);
         pnlForm.setLayout(pnlFormLayout);
         pnlFormLayout.setHorizontalGroup(
@@ -173,50 +167,6 @@ public class frmMantenerMascota extends javax.swing.JFrame implements ComponentP
             .addGroup(pnlFormLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlFormLayout.createSequentialGroup()
-                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlFormLayout.createSequentialGroup()
-                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(pnlFormLayout.createSequentialGroup()
-                                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(lbl1)
-                                    .addComponent(jLabel6)
-                                    .addComponent(lbl2)
-                                    .addComponent(lbl3)
-                                    .addComponent(lbl4)
-                                    .addComponent(jLabel4))
-                                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlFormLayout.createSequentialGroup()
-                                        .addGap(39, 39, 39)
-                                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(pnlFormLayout.createSequentialGroup()
-                                                .addComponent(txtHC, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(pnlFormLayout.createSequentialGroup()
-                                                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(0, 0, Short.MAX_VALUE))
-                                                    .addComponent(btnRegistrarHC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                            .addGroup(pnlFormLayout.createSequentialGroup()
-                                                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtRaza, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(cmbEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(0, 0, Short.MAX_VALUE))))
-                                    .addGroup(pnlFormLayout.createSequentialGroup()
-                                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(pnlFormLayout.createSequentialGroup()
-                                                .addGap(41, 41, 41)
-                                                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(pnlFormLayout.createSequentialGroup()
-                                                .addGap(48, 48, 48)
-                                                .addComponent(rdbMacho)
-                                                .addGap(38, 38, 38)
-                                                .addComponent(rdbHembra)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFormLayout.createSequentialGroup()
                         .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnlFormLayout.createSequentialGroup()
@@ -229,7 +179,37 @@ public class frmMantenerMascota extends javax.swing.JFrame implements ComponentP
                                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(20, 20, 20))))
+                        .addGap(20, 20, 20))
+                    .addGroup(pnlFormLayout.createSequentialGroup()
+                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlFormLayout.createSequentialGroup()
+                                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(lbl1)
+                                    .addComponent(jLabel6)
+                                    .addComponent(lbl2)
+                                    .addComponent(lbl3)
+                                    .addComponent(jLabel4))
+                                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlFormLayout.createSequentialGroup()
+                                        .addGap(39, 39, 39)
+                                        .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(pnlFormLayout.createSequentialGroup()
+                                                .addGap(115, 115, 115)
+                                                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtRaza, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cmbEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(pnlFormLayout.createSequentialGroup()
+                                        .addGap(41, 41, 41)
+                                        .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlFormLayout.createSequentialGroup()
+                                        .addGap(48, 48, 48)
+                                        .addComponent(rdbMacho)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(rdbHembra)))))
+                        .addContainerGap(14, Short.MAX_VALUE))))
         );
         pnlFormLayout.setVerticalGroup(
             pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,13 +245,7 @@ public class frmMantenerMascota extends javax.swing.JFrame implements ComponentP
                 .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl3))
-                .addGap(17, 17, 17)
-                .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl4)
-                    .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtHC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnRegistrarHC)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(pnlFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(btnActualizar)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -357,7 +331,6 @@ public class frmMantenerMascota extends javax.swing.JFrame implements ComponentP
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnRegistrarHC;
     private javax.swing.JComboBox<String> cmbEspecie;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -368,14 +341,12 @@ public class frmMantenerMascota extends javax.swing.JFrame implements ComponentP
     private javax.swing.JLabel lbl1;
     private javax.swing.JLabel lbl2;
     private javax.swing.JLabel lbl3;
-    private javax.swing.JLabel lbl4;
     private javax.swing.JPanel pnlForm;
     private javax.swing.JRadioButton rdbHembra;
     private javax.swing.JRadioButton rdbMacho;
     private javax.swing.ButtonGroup rdbgGenero;
     private javax.swing.JTextField txtColor;
     private javax.swing.JTextField txtEdad;
-    private javax.swing.JTextField txtHC;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPropietarioDNI;
     private javax.swing.JTextField txtRaza;

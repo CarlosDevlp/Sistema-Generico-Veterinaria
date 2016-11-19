@@ -22,7 +22,6 @@ public class Mascota {
     private String mRaza;
     private String mColor;
     
-    private String mNumeroHC;
     
     
     public Mascota(){
@@ -38,7 +37,6 @@ public class Mascota {
         mEspecie=args[5];
         mRaza=args[6];
         mColor=args[7];
-        mNumeroHC=args[8];
     }
     
     public String getId() {
@@ -61,8 +59,8 @@ public class Mascota {
         return mGenero;
     }
 
-    public void setGenero(String mGenero) {
-        this.mGenero = mGenero;
+    public void setGenero(String genero) {
+        mGenero = genero;
     }
 
     public String getEspecie() {
@@ -105,15 +103,6 @@ public class Mascota {
         this.mEdad = mEdad;
     }
 
-    public String getNumeroHC() {
-        return mNumeroHC;
-    }
-
-    public void setNumeroHC(String mNumeroHC) {
-        this.mNumeroHC = mNumeroHC;
-    }
-    
-    
     
     
     
@@ -124,11 +113,11 @@ public class Mascota {
     
     
     public void insert() throws Exception{   
-        Dao.insert("NOMBRE,PROPIETARIO_DNI,GENERO,EDAD,ESPECIE,RAZA,COLOR,NUMERO_HC", new String[]{mNombre,mPropietarioDNI,mGenero,mEdad+"",mEspecie,mRaza,mColor,mNumeroHC}, "MASCOTA");
+        Dao.insert("NOMBRE,PROPIETARIO_DNI,GENERO,EDAD,ESPECIE,RAZA,COLOR", new String[]{mNombre,mPropietarioDNI,mGenero,mEdad+"",mEspecie,mRaza,mColor}, "MASCOTA");
     }
     
     public void update(){          
-        Dao.update("NOMBRE,PROPIETARIO_DNI,GENERO,EDAD,ESPECIE,RAZA,COLOR,NUMERO_HC", new String[]{mNombre,mPropietarioDNI,mGenero,mEdad+"",mEspecie,mRaza,mColor,mNumeroHC}, "MASCOTA","ID_MASCOTA = "+mId);
+        Dao.update("NOMBRE,PROPIETARIO_DNI,GENERO,EDAD,ESPECIE,RAZA,COLOR", new String[]{mNombre,mPropietarioDNI,mGenero,mEdad+"",mEspecie,mRaza,mColor}, "MASCOTA","ID_MASCOTA = "+mId);
     }
     
     public Vector toVector(){
@@ -146,7 +135,7 @@ public class Mascota {
     }
     
     public String []toArray(){        
-        return new String[]{mId,mNombre,mPropietarioDNI,mGenero,mEdad+"",mEspecie,mRaza,mColor,mNumeroHC};  
+        return new String[]{mId,mNombre,mPropietarioDNI,mGenero,mEdad+"",mEspecie,mRaza,mColor};  
     }
     
     public static ArrayList<Mascota> getMascotaList(int columnIndex, String value){
@@ -172,7 +161,7 @@ public class Mascota {
                 column="PROPIETARIO_DNI";
                 
         }
-        ArrayList<ArrayList<String>> resultList=Dao.select("ID_MASCOTA,NOMBRE,PROPIETARIO_DNI,GENERO,EDAD,ESPECIE,RAZA,COLOR,NUMERO_HC", "MASCOTA", ((value.isEmpty())? null:column+" = '"+value+"'"));
+        ArrayList<ArrayList<String>> resultList=Dao.select("ID_MASCOTA,NOMBRE,PROPIETARIO_DNI,GENERO,EDAD,ESPECIE,RAZA,COLOR", "MASCOTA", ((value.isEmpty())? null:column+" = '"+value+"'"));
         //System.out.println(resultList.size()); 
         for(ArrayList<String> row: resultList){
             
@@ -187,9 +176,7 @@ public class Mascota {
             auxMascota.setEspecie(row.get(5));    
             auxMascota.setRaza(row.get(6));
             auxMascota.setColor(row.get(7));
-            auxMascota.setNumeroHC(row.get(8));
-            
-            
+
             
             mascotaList.add(auxMascota);
         }

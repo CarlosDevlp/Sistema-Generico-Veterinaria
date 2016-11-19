@@ -54,6 +54,8 @@ public class frmBuscarCita extends javax.swing.JFrame implements ComponentProvid
         jScrollPane1 = new javax.swing.JScrollPane();
         tbCitas = new javax.swing.JTable();
 
+        setTitle("Buscar Cita");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);

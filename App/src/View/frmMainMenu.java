@@ -104,7 +104,7 @@ public class frmMainMenu extends javax.swing.JFrame {
         smRegistrarCitaMedica = new javax.swing.JMenuItem();
         smBuscarCita = new javax.swing.JMenuItem();
         mServicio = new javax.swing.JMenu();
-        smGenerarConceptoBoletaVenta = new javax.swing.JMenuItem();
+        smRegistrarServicio = new javax.swing.JMenuItem();
         mInfoSoporte = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         mInfoAyuda = new javax.swing.JMenu();
@@ -228,13 +228,13 @@ public class frmMainMenu extends javax.swing.JFrame {
 
         mServicio.setText("Servicio");
 
-        smGenerarConceptoBoletaVenta.setText("Generar Concepto de Boleta Venta");
-        smGenerarConceptoBoletaVenta.addActionListener(new java.awt.event.ActionListener() {
+        smRegistrarServicio.setText("Registrar Servicio");
+        smRegistrarServicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                smGenerarConceptoBoletaVentaActionPerformed(evt);
+                smRegistrarServicioActionPerformed(evt);
             }
         });
-        mServicio.add(smGenerarConceptoBoletaVenta);
+        mServicio.add(smRegistrarServicio);
 
         jMenuBar1.add(mServicio);
 
@@ -283,9 +283,9 @@ public class frmMainMenu extends javax.swing.JFrame {
        mClsMainMenu.invocar("Buscar Mascota");
     }//GEN-LAST:event_smBuscarMascotaActionPerformed
 
-    private void smGenerarConceptoBoletaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smGenerarConceptoBoletaVentaActionPerformed
-        mClsMainMenu.invocar("Generar Concepto de boleta de venta");
-    }//GEN-LAST:event_smGenerarConceptoBoletaVentaActionPerformed
+    private void smRegistrarServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smRegistrarServicioActionPerformed
+        mClsMainMenu.invocar("Registrar Servicio");
+    }//GEN-LAST:event_smRegistrarServicioActionPerformed
 
     private void smRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smRegistrarActionPerformed
         mClsMainMenu.invocar("Registrar Historial Clinico");
@@ -363,10 +363,10 @@ public class frmMainMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem smBuscarCliente;
     private javax.swing.JMenuItem smBuscarHC;
     private javax.swing.JMenuItem smBuscarMascota;
-    private javax.swing.JMenuItem smGenerarConceptoBoletaVenta;
     private javax.swing.JMenuItem smMantenerCliente;
     private javax.swing.JMenuItem smMantenerMascota;
     private javax.swing.JMenuItem smRegistrar;
     private javax.swing.JMenuItem smRegistrarCitaMedica;
+    private javax.swing.JMenuItem smRegistrarServicio;
     // End of variables declaration//GEN-END:variables
 }

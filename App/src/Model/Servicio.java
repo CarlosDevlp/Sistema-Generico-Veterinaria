@@ -13,56 +13,98 @@ import java.util.ArrayList;
  */
 public class Servicio {
     private String mId;
-    private String mNombre;
-    private float  mPrecio;
+    private String mMascotaId;
+    private String mClienteId;
+    private ArrayList<String> mServicioIdList;
+    private String mIgv;
+    private String mMontoTotal;
+    private boolean mEstado;
     
-    
-    public Servicio(){        
-        
-    }    
+    public Servicio (){
+        mServicioIdList=new ArrayList<>();
+    }
 
     public String getId() {
+        
         return mId;
     }
 
     public void setId(String id) {
+        
         mId = id;
     }
 
-    public String getNombre() {
-        return mNombre;
+    public String getMascotaId() {
+        return mMascotaId;
     }
 
-    public void setNombre(String nombre) {
-        mNombre = nombre;
+    public void setMascotaId(String mascotaId) {
+        mMascotaId = mascotaId;
     }
 
-    public float getPrecio() {
-        return mPrecio;
+    public String getClienteId() {
+        return mClienteId;
     }
 
-    public void setPrecio(float precio) {        
-       mPrecio = precio;
+    public void setClienteId(String clienteId) {
+        mClienteId = clienteId;
     }
-    
 
-    public static ArrayList<Servicio> getServicioList(){
-        ArrayList<Servicio> servicioList= new ArrayList();
-        Servicio auxServicio;        
-        
-        ArrayList<ArrayList<String>> resultList=Dao.select("ID_SERVICIO,NOMBRE,PRECIO", "SERVICIO", null);
-        
-        for(ArrayList<String> row: resultList){
-            auxServicio=new Servicio();
-            auxServicio.setId(row.get(0));
-            auxServicio.setNombre(row.get(1));
-            auxServicio.setPrecio( Float.parseFloat(row.get(2)) );
-            
-            servicioList.add(auxServicio);
-        }
-        
-        return servicioList;
+    public ArrayList<String> getServicioIdList() {
+        return mServicioIdList;
+    }
+
+    public void setServicioIdList(ArrayList<String> servicioIdList) {
+        mServicioIdList = servicioIdList;
+    }
+
+    public void addServicioId(String servicioId) {
+        mServicioIdList.add(servicioId);
     }
     
     
+    public void removeServicioId(int index) {
+        mServicioIdList.remove(index);
+    }
+
+    public String getIgv() {
+        return mIgv;
+    }
+
+    public void setIgv(String igv) {
+        mIgv = igv;
+    }
+
+    public String getMontoTotal() {
+        return mMontoTotal;
+    }
+
+    public void setMontoTotal(String montoTotal) {
+        mMontoTotal = montoTotal;
+    }
+
+    public boolean isEstado() {
+        return mEstado;
+    }
+
+    public void setEstado(boolean estado) {
+        mEstado = estado;
+    }
+
+    //gurdar concepto en la base de datos
+    public void insert() throws Exception{
+        Dao.insert("IGV,MONTO_TOTAL,ID_MASCOTA,ID_CLIENTE,ESTADO",
+                    new String[]{mIgv,mMontoTotal,mMascotaId,mClienteId,"PENDIENTE"},"SERVICIO");
+        getGeneratedId();
+        for(String servicioId:mServicioIdList)
+            Dao.insert("ID_SERVICIO,ID_TIPO_SERVICIO",new String[]{mId,servicioId},"DETALLE_SERVICIO");
+        
+    }
+    
+    public String getGeneratedId(){
+        if(mId==null){            
+            mId=Dao.selectLastRow("ID_SERVICIO","ID_SERVICIO","SERVICIO").get(0);
+        }           
+        return mId;
+    }
 }

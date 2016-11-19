@@ -10,7 +10,7 @@ import View.frmBuscarCita;
 import View.frmBuscarCliente;
 import View.frmBuscarHistoriaClinica;
 import View.frmBuscarMascota;
-import View.frmGenerarConceptoComprobantePago;
+import View.frmRegistrarServicio;
 import View.frmMantenerCliente;
 import View.frmMantenerMascota;
 import View.frmRegistrarCita;
@@ -35,7 +35,7 @@ public class ClsMainMenu {
         mFormList.put("Buscar Mascota",new frmBuscarMascota());
         mFormList.put("Registrar Historial Clinico",new frmRegistrarHistorialClinico());
         mFormList.put("Buscar Historia Clínica",new frmBuscarHistoriaClinica());
-        mFormList.put("Generar Concepto de boleta de venta",new frmGenerarConceptoComprobantePago());
+        mFormList.put("Registrar Servicio",new frmRegistrarServicio());
         mFormList.put("Registrar Cita Médica",new frmRegistrarCita());
         mFormList.put("Buscar Cita Médica",new frmBuscarCita());
                

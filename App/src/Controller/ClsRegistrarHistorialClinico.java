@@ -44,8 +44,7 @@ public class ClsRegistrarHistorialClinico extends ViewController {
     private JTextField mTxtHC;
     
     
-    private JTextField mTxtNutricion;
-    private JTextField mTxtEstiloVida;   
+    
     private JTextField mTxtTemperatura;
     private JTextField mTxtPulso;
     private JTextField mTxtEstadoHidratacion;
@@ -109,8 +108,6 @@ public class ClsRegistrarHistorialClinico extends ViewController {
             
             
             //habilitar el resto de los campos
-            mTxtNutricion.setEnabled(true);
-            mTxtEstiloVida.setEnabled(true);
             mTxtTemperatura.setEnabled(true);
             mTxtPulso.setEnabled(true);
             mTxtEstadoHidratacion.setEnabled(true);
@@ -133,8 +130,6 @@ public class ClsRegistrarHistorialClinico extends ViewController {
             
             
             mHistoriaClinica.setMascotaId(mMascota.getId());
-            mHistoriaClinica.setNutricion(mTxtNutricion.getText());
-            mHistoriaClinica.setEstiloVida(mTxtEstiloVida.getText());
             mHistoriaClinica.setTemperatura(mTxtTemperatura.getText());
             mHistoriaClinica.setPulso(mTxtPulso.getText());
             mHistoriaClinica.setEstadoHidratacion(mTxtEstadoHidratacion.getText());
@@ -157,8 +152,6 @@ public class ClsRegistrarHistorialClinico extends ViewController {
     
     private boolean validarFormulario(){
         return !(
-                 (mTxtNutricion.getText().trim()).isEmpty() || 
-                 (mTxtEstiloVida.getText().trim()).isEmpty() || 
                  (mTxtTemperatura.getText().trim()).isEmpty() || 
                  (mTxtPulso.getText().trim()).isEmpty() || 
                  (mTxtEstadoHidratacion.getText().trim()).isEmpty() || 
@@ -191,8 +184,6 @@ public class ClsRegistrarHistorialClinico extends ViewController {
         
         
         //hc
-        mTxtNutricion=(JTextField)mRegistrarHistorialClinicoView.getComponentById("hc_nutricion");
-        mTxtEstiloVida=(JTextField)mRegistrarHistorialClinicoView.getComponentById("hc_estilovida");
         mTxtTemperatura=(JTextField) mRegistrarHistorialClinicoView.getComponentById("hc_temperatura");
         mTxtPulso=(JTextField) mRegistrarHistorialClinicoView.getComponentById("hc_pulso");
         mTxtEstadoHidratacion=(JTextField) mRegistrarHistorialClinicoView.getComponentById("hc_estadohidratacion");
@@ -223,8 +214,6 @@ public class ClsRegistrarHistorialClinico extends ViewController {
         
         
         //hc
-        mTxtNutricion.setEnabled(false);
-        mTxtEstiloVida.setEnabled(false);
         mTxtTemperatura.setEnabled(false);
         mTxtPulso.setEnabled(false);
         mTxtEstadoHidratacion.setEnabled(false);

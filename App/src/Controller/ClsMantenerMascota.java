@@ -33,7 +33,6 @@ public class ClsMantenerMascota extends ViewController{
     private JComboBox  mCmbEspecie;
     private JTextField mTxtRaza;
     private JTextField mTxtColor;
-    private JTextField mTxtNumeroHC;
     
     private JComponent mBtnAgregar;
     private JComponent mBtnActualizar;
@@ -80,7 +79,7 @@ public class ClsMantenerMascota extends ViewController{
                 mCmbEspecie.setSelectedItem(mMascota.getEspecie());
                 mTxtRaza.setText(mMascota.getRaza());
                 mTxtColor.setText(mMascota.getColor());
-                mTxtNumeroHC.setText(mMascota.getNumeroHC());
+                //mTxtNumeroHC.setText(mMascota.getNumeroHC());
                 
             }
             
@@ -93,6 +92,8 @@ public class ClsMantenerMascota extends ViewController{
     public void invocarBuscarMascota(){
         mFormBuscarMascota.setVisible(true);
     }
+    
+    
     //agregar mascota
     public void agregarMascota(){
         
@@ -112,14 +113,14 @@ public class ClsMantenerMascota extends ViewController{
             mBtnAgregar.setEnabled(true);
             mBtnActualizar.setEnabled(false);
             
-            mMascota.setNombre(  mTxtNombre.getText() );
-            mMascota.setPropietarioDNI( mTxtPropietarioDNI.getText());           
-            mMascota.setGenero( (mRdbMacho.isSelected()?"M":"H") );
-            mMascota.setEdad( Integer.parseInt(mTxtEdad.getText()) );
-            mMascota.setEspecie(  mCmbEspecie.getSelectedItem().toString() );
-            mMascota.setRaza(  mTxtRaza.getText() );
-            mMascota.setColor(  mTxtColor.getText() );
-            mMascota.setNumeroHC( mTxtNumeroHC.getText());
+            mascota.setNombre(  mTxtNombre.getText() );
+            mascota.setPropietarioDNI( mTxtPropietarioDNI.getText());           
+            mascota.setGenero( (mRdbMacho.isSelected()?"M":"H") );
+            mascota.setEdad( Integer.parseInt(mTxtEdad.getText()) );
+            mascota.setEspecie(  mCmbEspecie.getSelectedItem().toString() );
+            mascota.setRaza(  mTxtRaza.getText() );
+            mascota.setColor(  mTxtColor.getText() );
+
                                          
             
             mascota.insert();
@@ -137,7 +138,6 @@ public class ClsMantenerMascota extends ViewController{
         }catch(Exception err2){
             System.out.println("ClsMantenerMascota: "+err2);
             AlertDialogError("Error con el servidor"); 
-        }finally{           
         }
         
     }
@@ -152,12 +152,15 @@ public class ClsMantenerMascota extends ViewController{
                     AlertDialogError("No debe haber campos vacíos");
                     return;
                 }
-                mMascota.setNombre(  mTxtNombre.getText() );
                 
+                mMascota.setNombre(  mTxtNombre.getText() );
+                mMascota.setPropietarioDNI( mTxtPropietarioDNI.getText());           
+                mMascota.setGenero( (mRdbMacho.isSelected()?"M":"H") );
+                mMascota.setEdad( Integer.parseInt(mTxtEdad.getText()) );
                 mMascota.setEspecie(  mCmbEspecie.getSelectedItem().toString() );
                 mMascota.setRaza(  mTxtRaza.getText() );
                 mMascota.setColor(  mTxtColor.getText() );
-                
+
                 
                 mMascota.update();
                 
@@ -170,7 +173,7 @@ public class ClsMantenerMascota extends ViewController{
                 
                 
             }catch(NullPointerException  err){            
-                System.out.println(TAG_ERROR+": "+err);
+                System.out.println(TAG_ERROR+": "+err.getMessage());
                 AlertDialogError("Error con el servidor"); 
             }catch(Exception err2){
                 System.out.println(TAG_ERROR+": "+err2);
@@ -185,8 +188,8 @@ public class ClsMantenerMascota extends ViewController{
                 (mTxtEdad.getText().trim()).isEmpty()    ||
                 (mTxtPropietarioDNI.getText().trim()).isEmpty()    ||
                 (mTxtRaza.getText().trim()).isEmpty()    ||
-                (mTxtColor.getText().trim()).isEmpty()  ||
-                (mTxtNumeroHC.getText().trim()).isEmpty());
+                (mTxtColor.getText().trim()).isEmpty());
+        
     }
     
     
@@ -201,7 +204,6 @@ public class ClsMantenerMascota extends ViewController{
         mCmbEspecie=(JComboBox) mMantenerMascotaView.getComponentById("mascota_especie");
         mTxtRaza=(JTextField) mMantenerMascotaView.getComponentById("mascota_raza");
         mTxtColor=(JTextField) mMantenerMascotaView.getComponentById("mascota_color");
-        mTxtNumeroHC=(JTextField) mMantenerMascotaView.getComponentById("mascota_numerohc");
         
         mBtnAgregar= mMantenerMascotaView.getComponentById("mascota_btnagregar");
         mBtnActualizar= mMantenerMascotaView.getComponentById("mascota_btnactualizar");
@@ -224,7 +226,6 @@ public class ClsMantenerMascota extends ViewController{
         mCmbEspecie.setSelectedIndex(0);
         mTxtRaza.setText("");
         mTxtColor.setText("");
-        mTxtNumeroHC.setText("");
         
         
         mBtnAgregar.setEnabled(true);
@@ -232,9 +233,5 @@ public class ClsMantenerMascota extends ViewController{
         
         
     }
-
-
-    
-  
 
 }

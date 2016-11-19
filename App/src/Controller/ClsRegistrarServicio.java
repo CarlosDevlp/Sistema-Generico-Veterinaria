@@ -7,34 +7,37 @@ package Controller;
 
 import Model.Callback;
 import Model.Cliente;
-import Model.ConceptoComprobantePago;
-import Model.Mascota;
 import Model.Servicio;
+import Model.Mascota;
+import Model.TipoServicio;
 import View.frmBuscarCliente;
 import View.frmBuscarMascota;
-import View.frmGenerarConceptoComprobantePago;
+import View.frmRegistrarServicio;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Vector;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JRadioButton;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Carlos
  */
-public class ClsGenerarConceptoComprobantePago extends ViewController {
-    private final frmGenerarConceptoComprobantePago mGenerarConceptoComprobantePagoView;
+public class ClsRegistrarServicio extends ViewController {
+    private final frmRegistrarServicio mGenerarConceptoComprobantePagoView;
     private final frmBuscarMascota mFormBuscarMascota;
     private final javax.swing.JFrame mFormBuscarCliente;//extend
 
     private Mascota mMascota;
     private Cliente mCliente;
-    private ArrayList<Servicio> mServicioList;
-    private Servicio mSelectedServicio;
-    private ConceptoComprobantePago mConceptoComprobantePago;
+    private ArrayList<TipoServicio> mTipoServicioList;    
+    private TipoServicio mSelectedServicio;
+    private Servicio mServicio;
              
     private boolean mReady;
     //campos    
@@ -50,7 +53,6 @@ public class ClsGenerarConceptoComprobantePago extends ViewController {
     private JRadioButton mRdbMacho;
     private JRadioButton mRdbHembra;
     //private JTextField mTxtEdad;
-    private JTextField mTxtHC;    
     
     private JComboBox mCmbServicioTipo;
     private JTextField mTxtFecha;
@@ -58,10 +60,19 @@ public class ClsGenerarConceptoComprobantePago extends ViewController {
     private JTextField mTxtIGV;
     private JTextField mTxtTotal;
     private JComponent mBtnGenerar;
+    private JComponent mBtnAgregarServicio;
+    private JComponent mBtnEliminarServicio;
+    private JComponent mBtnImprimir;
+    private JComponent mLblTablaVacia;
+    private JTable mTbServicios;
+    private DefaultTableModel mTbModel;
+    //tabla 
+        //columnas
+    private final String []mTableColumns =new String[]{"Servicio","Precio"};    
     
-    public ClsGenerarConceptoComprobantePago(frmGenerarConceptoComprobantePago generarConceptoComprobantePagoView){
-         TAG="ClsGenerarConceptoComprobantePago";
-         TAG_ERROR="ClsGenerarConceptoComprobantePago-Error";
+    public ClsRegistrarServicio(frmRegistrarServicio generarConceptoComprobantePagoView){
+         TAG="ClsRegistrarServicio";
+         TAG_ERROR="ClsRegistrarServicio-Error";
          mGenerarConceptoComprobantePagoView=generarConceptoComprobantePagoView;
          mFormBuscarMascota= new frmBuscarMascota();
          
@@ -76,7 +87,7 @@ public class ClsGenerarConceptoComprobantePago extends ViewController {
                     mCmbEspecie.setSelectedItem(mMascota.getEspecie());
                     mTxtRaza.setText(mMascota.getRaza());
                     mTxtColor.setText(mMascota.getColor());
-
+                    
                     switch(mMascota.getGenero()){
                         case "M":
                             mRdbMacho.setSelected(true);
@@ -98,9 +109,9 @@ public class ClsGenerarConceptoComprobantePago extends ViewController {
          
          
          mFormBuscarCliente= new frmBuscarCliente();
-         mServicioList= new ArrayList();
+         mTipoServicioList= new ArrayList();
          mReady=false;
-         mConceptoComprobantePago= new ConceptoComprobantePago();
+         mServicio= new Servicio();
     }
     
     //mostrar formulario de búsqueda de cliente
@@ -126,7 +137,10 @@ public class ClsGenerarConceptoComprobantePago extends ViewController {
             setTiempoActual();
             mCmbServicioTipo.setEnabled(true);
             calcularMonto();
-            mBtnGenerar.setEnabled(true);
+            mBtnGenerar.setEnabled(true);            
+            mBtnAgregarServicio.setEnabled(true);
+            mBtnEliminarServicio.setEnabled(true);
+            mBtnImprimir.setEnabled(true);
         }catch(NullPointerException  err){            
                 System.out.println("ClsMantenerMascota: "+err);
                 AlertDialogError("Error con el servidor"); 
@@ -144,11 +158,11 @@ public class ClsGenerarConceptoComprobantePago extends ViewController {
     
     private void cargarComboServicios(){
         
-        if(mServicioList.isEmpty()){
+        if(mTipoServicioList.isEmpty()){
             try{
-                mServicioList= Servicio.getServicioList();
+                mTipoServicioList= TipoServicio.getServicioList();
                 mCmbServicioTipo.removeAllItems();
-                for(Servicio servicio:mServicioList)  
+                for(TipoServicio servicio:mTipoServicioList)  
                     mCmbServicioTipo.addItem(servicio.getNombre());
                 
                 
@@ -162,13 +176,44 @@ public class ClsGenerarConceptoComprobantePago extends ViewController {
         }
     }
     
+    
+    public void agregarServicioATabla(){
+        Vector<String> row= new Vector();
+        int index=mCmbServicioTipo.getSelectedIndex();
+        row.add(mTipoServicioList.get(index).getNombre()+"");
+        row.add(mTipoServicioList.get(index).getPrecio()+"");                
+        
+        mTbModel.addRow(row);        
+        mServicio.addServicioId(mTipoServicioList.get(index).getId());
+        
+        mLblTablaVacia.setVisible(mTbModel.getRowCount()==0);
+        
+        calcularMonto();        
+    }
+    
+    public void eliminarServicioDeTabla(){
+        if(mTbServicios!=null && mTbServicios.getSelectedRowCount()>0){               
+                
+                int selectedItemPosition=mTbServicios.getSelectedRow();                
+                mTbModel.removeRow(selectedItemPosition);
+                mServicio.removeServicioId(selectedItemPosition);
+            }else
+                AlertDialogError("Selecciona una fila de la tabla");   
+        
+        mLblTablaVacia.setVisible(mTbModel.getRowCount()==0);
+        calcularMonto();
+    }
     //calcular monto a pagar y mostrarlo en la interfaz
     public void calcularMonto(){
         
         if(mReady){
-            int index=mCmbServicioTipo.getSelectedIndex();
-            mSelectedServicio=mServicioList.get(index);
-            float precio=mSelectedServicio.getPrecio();
+            int tam =mTbModel.getRowCount();
+            float precio=0;
+               for(int i=0;i<tam;i++)                   
+                    precio+=Float.parseFloat(mTbModel.getValueAt(i, 1)+"");
+            
+            
+            
             float igv=precio*0.18f;
             float total=precio+igv;
             DecimalFormat df = new DecimalFormat("0.00");
@@ -177,16 +222,17 @@ public class ClsGenerarConceptoComprobantePago extends ViewController {
             mTxtTotal.setText( df.format(total)+"");
         }
     }
-    public void generarConceptoComprobantePago(){
+    public void registrarServicio(){
         try{
-            mConceptoComprobantePago.setMascotaId(mMascota.getId());
-            mConceptoComprobantePago.setClienteId(mCliente.getId());        
-            mConceptoComprobantePago.setServicioId(mSelectedServicio.getId());
-            mConceptoComprobantePago.setIgv(mTxtIGV.getText().replace(",", "."));
-            mConceptoComprobantePago.setMontoTotal(mTxtTotal.getText().replace(",", "."));
-            mConceptoComprobantePago.setEstado(false);//estado de no cancelado
-            mConceptoComprobantePago.insert();
-            AlertDialog("¡Se ha generado un nuevo concepto de comprobante con el código #"+mConceptoComprobantePago.getGeneratedId()+" !");
+            mServicio.setMascotaId(mMascota.getId());
+            mServicio.setClienteId(mCliente.getId());        
+            //mConceptoComprobantePago.setServicioId(mSelectedServicio.getId());
+            mServicio.setIgv(mTxtIGV.getText().replace(",", "."));
+            mServicio.setMontoTotal(mTxtTotal.getText().replace(",", "."));
+            mServicio.setEstado(false);//estado de no cancelado
+            mServicio.insert();
+            AlertDialog("¡Se ha registrado un nuevo servicio con el código #"+mServicio.getGeneratedId()+" !");
+            clearTable();        
             mGenerarConceptoComprobantePagoView.setVisible(false);
             reset();
         }catch(NullPointerException  err){            
@@ -196,6 +242,13 @@ public class ClsGenerarConceptoComprobantePago extends ViewController {
                 System.out.println("ClsMantenerMascota: "+err2);
                 AlertDialogError("Error con el servidor"); 
         }
+    }
+    
+    
+    //vaciar la tabla
+    private void clearTable(){        
+        mTbModel = new DefaultTableModel(null,mTableColumns);
+        mTbServicios.setModel(mTbModel);
     }
     
     @Override
@@ -215,7 +268,7 @@ public class ClsGenerarConceptoComprobantePago extends ViewController {
         mRdbMacho= (JRadioButton) mGenerarConceptoComprobantePagoView.getComponentById("mascota_rdbmacho");
         mRdbHembra= (JRadioButton) mGenerarConceptoComprobantePagoView.getComponentById("mascota_rdbhembra");
         //mTxtEdad= (JTextField) mGenerarConceptoComprobantePagoView.getComponentById("mascota_edad");
-        //mTxtHC= (JTextField) mGenerarConceptoComprobantePagoView.getComponentById("mascota_numerohc");
+
         
         //servicio
         mCmbServicioTipo=(JComboBox) mGenerarConceptoComprobantePagoView.getComponentById("servicio_tipo");
@@ -224,12 +277,19 @@ public class ClsGenerarConceptoComprobantePago extends ViewController {
         mTxtIGV=(JTextField) mGenerarConceptoComprobantePagoView.getComponentById("servicio_igv");
         mTxtTotal=(JTextField) mGenerarConceptoComprobantePagoView.getComponentById("servicio_total");
         mBtnGenerar= mGenerarConceptoComprobantePagoView.getComponentById("servicio_btngenerar");
-        
+        mBtnImprimir= mGenerarConceptoComprobantePagoView.getComponentById("servicio_btnimprimir");
+        mBtnAgregarServicio=mGenerarConceptoComprobantePagoView.getComponentById("servicio_btnagregarservicio");
+        mBtnEliminarServicio=mGenerarConceptoComprobantePagoView.getComponentById("servicio_btneliminarservicio");
+        mTbServicios=(JTable) mGenerarConceptoComprobantePagoView.getComponentById("servicio_tb");
+        mLblTablaVacia=mGenerarConceptoComprobantePagoView.getComponentById("servicio_lbltablavacia"); 
         
         //cargar servicios en el combobox
         cargarComboServicios();
         mReady=true;
-        
+
+
+        //crear un nuevo table model
+        clearTable();        
     }
 
     @Override
@@ -249,7 +309,7 @@ public class ClsGenerarConceptoComprobantePago extends ViewController {
         mRdbMacho.setSelected(true);
         mRdbHembra.setSelected(false);
        // mTxtEdad.setText("");
-        //mTxtHC.setText("");
+
         
         //servicio
         mCmbServicioTipo.setEnabled(false);
@@ -259,6 +319,12 @@ public class ClsGenerarConceptoComprobantePago extends ViewController {
         mTxtSubTotal.setText("00.00");
         mTxtIGV.setText("00.00");
         mTxtTotal.setText("00.00");
-        mBtnGenerar.setEnabled(false);
+        mBtnGenerar.setEnabled(false);        
+        mBtnAgregarServicio.setEnabled(false);
+        mBtnEliminarServicio.setEnabled(false);
+        mBtnImprimir.setEnabled(false);
+        
+        
+        mLblTablaVacia.setVisible(true);
     }
 }

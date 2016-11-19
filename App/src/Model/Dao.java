@@ -146,7 +146,7 @@ abstract public class Dao {
             
             //nJoins
             for(int i=1;i<table.length;i++)
-                join+=" INNER JOIN "+table[i]+" ON "+Match[i-1];            
+                join+=" INNER JOIN "+table[i]+" ON "+Match[i-1]+"="+Match[i]; 
             
             System.out.print("SELECT "+col+" FROM "+table[0]+join+((where==null)?"":" WHERE "+where));
             r=Dao.DB.query("SELECT "+col+" FROM "+table[0]+join+((where==null)?"":" WHERE "+where),"SELECT");            

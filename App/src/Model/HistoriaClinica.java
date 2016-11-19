@@ -14,8 +14,6 @@ import java.util.Vector;
  */
 public class HistoriaClinica {
     private String mId;//Numero HC
-    private String mNutricion;
-    private String mEstiloVida;   
     private String mTemperatura;
     private String mPulso;
     private String mEstadoHidratacion;
@@ -34,22 +32,7 @@ public class HistoriaClinica {
     public void setId(String id) {
         mId = id;
     }
-
-    public String getNutricion() {
-        return mNutricion;
-    }
-
-    public void setNutricion(String nutricion) {
-        mNutricion = nutricion;
-    }
-
-    public String getEstiloVida() {
-        return mEstiloVida;
-    }
-
-    public void setEstiloVida(String estiloVida) {
-        mEstiloVida = estiloVida;
-    }
+   
 
     public String getTemperatura() {
         return mTemperatura;
@@ -102,8 +85,8 @@ public class HistoriaClinica {
     
     
     public void insert() throws Exception{
-        Dao.insert("MASCOTA_ID_MASCOTA,NUTRICION,ESTILO_VIDA,TEMPERATURA,PULSO,ESTADO_HIDRATACION,FRECUENCIA_CARDIACA,FRECUENCIA_RESPIRATORIA",
-                   new String[]{mMascotaId,mNutricion,mEstiloVida,mTemperatura,mPulso,mEstadoHidratacion,mFrecuenciaCardiaca,mFrecuenciaRespiratoria},
+        Dao.insert("MASCOTA_ID_MASCOTA,TEMPERATURA,PULSO,ESTADO_HIDRATACION,FRECUENCIA_CARDIACA,FRECUENCIA_RESPIRATORIA",
+                   new String[]{mMascotaId,mTemperatura,mPulso,mEstadoHidratacion,mFrecuenciaCardiaca,mFrecuenciaRespiratoria},
                    "HISTORIA_CLINICA");
     }
     
@@ -145,7 +128,7 @@ public class HistoriaClinica {
         }
         
         
-        ArrayList<ArrayList<String>> resultList=Dao.select("HISTORIA_CLINICA.NUMERO_HC,NOMBRE,PROPIETARIO_DNI,ESPECIE,RAZA,EDAD,NUTRICION,TEMPERATURA", new String[]{"MASCOTA","HISTORIA_CLINICA"},
+        ArrayList<ArrayList<String>> resultList=Dao.select("HISTORIA_CLINICA.NUMERO_HC,NOMBRE,PROPIETARIO_DNI,ESPECIE,RAZA,EDAD,TEMPERATURA", new String[]{"MASCOTA","HISTORIA_CLINICA"},
                                                             new String[]{"MASCOTA.ID_MASCOTA","HISTORIA_CLINICA.MASCOTA_ID_MASCOTA"} ,((value.isEmpty())? null:column+" = '"+value+"'"));
         //System.out.println(resultList.size()); 
         for(ArrayList<String> row: resultList)

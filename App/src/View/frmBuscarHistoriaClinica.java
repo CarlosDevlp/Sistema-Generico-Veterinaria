@@ -102,11 +102,11 @@ public class frmBuscarHistoriaClinica extends javax.swing.JFrame implements Comp
 
             },
             new String [] {
-                "Numero H.C", "Nombre", "Propietario DNI", "Especie", "Raza", "Edad", "Nutricion", "Temperatura"
+                "Numero H.C", "Nombre", "Propietario DNI", "Especie", "Raza", "Edad", "Temperatura"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

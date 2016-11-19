@@ -122,12 +122,12 @@
             <Property name="text" type="java.lang.String" value="Servicio"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="smGenerarConceptoBoletaVenta">
+            <MenuItem class="javax.swing.JMenuItem" name="smRegistrarServicio">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Generar Concepto de Boleta Venta"/>
+                <Property name="text" type="java.lang.String" value="Registrar Servicio"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="smGenerarConceptoBoletaVentaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="smRegistrarServicioActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

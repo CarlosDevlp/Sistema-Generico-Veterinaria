@@ -33,7 +33,7 @@ public class ClsBuscarHistoriaClinica extends ViewController{
     private DefaultTableModel mTbModel;
     //tabla 
         //columnas
-    private final String []mTableColumns =new String[]{"Numero HC","Nombre","Propietario DNI","Especie","Raza","Edad","Nutricion","Temperatura"};
+    private final String []mTableColumns =new String[]{"Numero HC","Nombre","Propietario DNI","Especie","Raza","Edad","Temperatura"};
     
     public ClsBuscarHistoriaClinica(frmBuscarHistoriaClinica buscarHistoriaClinicaView){
         mBuscarHistoriaClinicaView  = buscarHistoriaClinicaView ;
