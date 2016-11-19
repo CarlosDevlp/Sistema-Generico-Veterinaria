@@ -27,6 +27,8 @@ public class frmBuscarCita extends javax.swing.JFrame implements ComponentProvid
         mComponentList.put("cita_lbltablavacia", lblTablaVacia);        
         mComponentList.put("cita_fecdesde", dtpFecDesde);  
         mComponentList.put("cita_fechasta", dtpFecHasta);  
+        
+        
     }
 
     /**
@@ -41,6 +43,7 @@ public class frmBuscarCita extends javax.swing.JFrame implements ComponentProvid
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        icon = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel13 = new javax.swing.JLabel();
         cmbDoctor = new javax.swing.JComboBox<>();
@@ -73,6 +76,8 @@ public class frmBuscarCita extends javax.swing.JFrame implements ComponentProvid
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Buscar Cita");
 
+        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Images/36x36/icon_lupa.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -80,14 +85,20 @@ public class frmBuscarCita extends javax.swing.JFrame implements ComponentProvid
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(344, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(icon)
+                .addGap(30, 30, 30))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jLabel13.setText("Doctor");
@@ -164,7 +175,7 @@ public class frmBuscarCita extends javax.swing.JFrame implements ComponentProvid
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(pntbDistribuidores, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +201,7 @@ public class frmBuscarCita extends javax.swing.JFrame implements ComponentProvid
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pntbDistribuidores, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addComponent(pntbDistribuidores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -260,6 +271,7 @@ public class frmBuscarCita extends javax.swing.JFrame implements ComponentProvid
     private javax.swing.JComboBox<String> cmbDoctor;
     private com.toedter.calendar.JDateChooser dtpFecDesde;
     private com.toedter.calendar.JDateChooser dtpFecHasta;
+    private javax.swing.JLabel icon;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;

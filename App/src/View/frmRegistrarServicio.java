@@ -68,6 +68,7 @@ public class frmRegistrarServicio extends javax.swing.JFrame implements Componen
         pnBase = new javax.swing.JPanel();
         pnTitle = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        icon = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -135,6 +136,8 @@ public class frmRegistrarServicio extends javax.swing.JFrame implements Componen
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Registrar Servicio");
 
+        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Images/36x36/icon_boleta.png"))); // NOI18N
+
         javax.swing.GroupLayout pnTitleLayout = new javax.swing.GroupLayout(pnTitle);
         pnTitle.setLayout(pnTitleLayout);
         pnTitleLayout.setHorizontalGroup(
@@ -142,13 +145,17 @@ public class frmRegistrarServicio extends javax.swing.JFrame implements Componen
             .addGroup(pnTitleLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
+                .addComponent(icon)
+                .addGap(38, 38, 38))
         );
         pnTitleLayout.setVerticalGroup(
             pnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnTitleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
+                .addGroup(pnTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icon)
+                    .addComponent(jLabel7))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -357,7 +364,7 @@ public class frmRegistrarServicio extends javax.swing.JFrame implements Componen
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
-                                .addGap(48, 52, Short.MAX_VALUE)
+                                .addGap(48, 70, Short.MAX_VALUE)
                                 .addComponent(txtMNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnBuscarMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -375,11 +382,11 @@ public class frmRegistrarServicio extends javax.swing.JFrame implements Componen
                                         .addComponent(rdbMacho)
                                         .addGap(38, 38, 38)
                                         .addComponent(rdbHembra)
-                                        .addGap(120, 142, Short.MAX_VALUE)))))
+                                        .addGap(120, 160, Short.MAX_VALUE)))))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl2)
                             .addComponent(lbl3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtRaza)
                             .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -389,7 +396,7 @@ public class frmRegistrarServicio extends javax.swing.JFrame implements Componen
                             .addComponent(jLabel8)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addContainerGap(52, Short.MAX_VALUE))
+                        .addContainerGap(88, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -633,6 +640,7 @@ public class frmRegistrarServicio extends javax.swing.JFrame implements Componen
     private javax.swing.JButton btnImprimir;
     private javax.swing.JComboBox<String> cmbEspecie;
     private javax.swing.JComboBox<String> cmbServicioTipo;
+    private javax.swing.JLabel icon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

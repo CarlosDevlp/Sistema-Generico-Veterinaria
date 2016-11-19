@@ -8,7 +8,7 @@ package View;
 import javax.swing.JComponent;
 
 /**
- *
+ *Interfaz para proveer componentes del view al controlador
  * @author Carlos
  */
 public interface ComponentProvider {

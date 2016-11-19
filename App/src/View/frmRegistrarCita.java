@@ -66,6 +66,7 @@ public class frmRegistrarCita extends javax.swing.JFrame implements ComponentPro
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        icon = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btnBuscarMascota = new javax.swing.JButton();
         txtMNombre = new javax.swing.JTextField();
@@ -123,6 +124,8 @@ public class frmRegistrarCita extends javax.swing.JFrame implements ComponentPro
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Registrar Cita");
 
+        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Images/36x36/icon_cita.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -130,13 +133,17 @@ public class frmRegistrarCita extends javax.swing.JFrame implements ComponentPro
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(icon)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(icon))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -430,6 +437,7 @@ public class frmRegistrarCita extends javax.swing.JFrame implements ComponentPro
     private javax.swing.JComboBox<String> cmbDoctor;
     private javax.swing.JComboBox<String> cmbEspecie;
     private com.toedter.calendar.JDateChooser dtpFecha;
+    private javax.swing.JLabel icon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

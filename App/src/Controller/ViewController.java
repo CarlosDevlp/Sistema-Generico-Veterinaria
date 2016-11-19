@@ -9,7 +9,7 @@ import View.ComponentProvider;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * controlador padre que servirá como plantilla para todos los controladores
  * @author Carlos
  */
 abstract public class ViewController {
