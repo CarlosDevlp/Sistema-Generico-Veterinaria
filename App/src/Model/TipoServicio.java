@@ -55,6 +55,7 @@ public class TipoServicio {
         for(ArrayList<String> row: resultList){
             auxServicio=new TipoServicio();
             auxServicio.setId(row.get(0));
+            //System.out.println(row.get(0)+" "+row.get(1)+" "+row.get(2));
             auxServicio.setNombre(row.get(1));
             auxServicio.setPrecio( Float.parseFloat(row.get(2)) );
             
@@ -64,5 +65,21 @@ public class TipoServicio {
         return servicioList;
     }
     
+    
+    public static TipoServicio getServicioWhereNombre(String tipoServicioNombre){
+        TipoServicio auxServicio;        
+        
+        ArrayList<String> row=Dao.select("ID_TIPO_SERVICIO,NOMBRE,PRECIO", "TIPO_SERVICIO", "NOMBRE='"+tipoServicioNombre+"'").get(0);
+        
+        
+            auxServicio=new TipoServicio();
+            auxServicio.setId(row.get(0));            
+            auxServicio.setNombre(row.get(1));
+            auxServicio.setPrecio( Float.parseFloat(row.get(2)) );
+            
+           
+        
+        return auxServicio;
+    }
     
 }

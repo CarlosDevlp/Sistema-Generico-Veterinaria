@@ -9,6 +9,8 @@ import Model.Callback;
 import Model.Cita;
 import Model.Cliente;
 import Model.Mascota;
+import Model.Servicio;
+import Model.TipoServicio;
 import View.frmBuscarCita;
 import View.frmBuscarMascota;
 import View.frmRegistrarCita;
@@ -30,6 +32,7 @@ public class ClsRegistrarCita extends ViewController{
     private frmBuscarCita mBuscarCitaView; 
     private final frmBuscarMascota mFormBuscarMascota;
     private Cita mCita;
+    private Servicio mServicio;
     private Mascota mMascota;
     private Cliente mCliente;
     //campos
@@ -86,6 +89,7 @@ public class ClsRegistrarCita extends ViewController{
              
          });
          mCita= new Cita();
+         mServicio=new Servicio();
     }       
     
     //registrar la cita en la bd
@@ -97,6 +101,16 @@ public class ClsRegistrarCita extends ViewController{
             mCita.setIdDoctor(mCmbDoctor.getSelectedIndex()+"");
             mCita.setHora(mSpnHora.getValue()+"");
             mCita.setFecha(mDtpFecha.getCalendar());
+            
+           TipoServicio auxTipoServicio= TipoServicio.getServicioWhereNombre("Consulta");
+            
+            mServicio.setClienteId(mCliente.getId());
+            mServicio.setMascotaId(mMascota.getId());            
+            mServicio.setTipoServicioId(auxTipoServicio.getId());
+            mServicio.setSubTotal(auxTipoServicio.getPrecio());
+            mServicio.insert();
+            
+            mCita.setIdServicio(mServicio.getGeneratedId());
             
             //System.out.print();
             //mDtpFecha.getCalendar().get(Calendar.)

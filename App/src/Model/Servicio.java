@@ -5,7 +5,6 @@
  */
 package Model;
 
-import java.util.ArrayList;
 
 /**
  *
@@ -15,13 +14,14 @@ public class Servicio {
     private String mId;
     private String mMascotaId;
     private String mClienteId;
-    private ArrayList<String> mServicioIdList;
-    private String mIgv;
-    private String mMontoTotal;
+    private String mTipoServicioId;
+    //private ArrayList<String> mServicioIdList;
+    //private String mIgv;
+    //private String mMontoTotal;
+    private float mSubTotal;
     private boolean mEstado;
     
-    public Servicio (){
-        mServicioIdList=new ArrayList<>();
+    public Servicio (){        
     }
 
     public String getId() {
@@ -50,37 +50,48 @@ public class Servicio {
         mClienteId = clienteId;
     }
 
+    public String getTipoServicioId() {
+        return mTipoServicioId;
+    }
+
+    public void setTipoServicioId(String tipoServicioId) {
+        mTipoServicioId = tipoServicioId;
+    }
+
+    
+    
+    public float getSubTotal() {    
+        return mSubTotal;
+    }
+
+    /*
     public ArrayList<String> getServicioIdList() {
-        return mServicioIdList;
+    return mServicioIdList;
     }
-
     public void setServicioIdList(ArrayList<String> servicioIdList) {
-        mServicioIdList = servicioIdList;
+    mServicioIdList = servicioIdList;
     }
-
     public void addServicioId(String servicioId) {
-        mServicioIdList.add(servicioId);
+    mServicioIdList.add(servicioId);
     }
-    
-    
     public void removeServicioId(int index) {
-        mServicioIdList.remove(index);
+    mServicioIdList.remove(index);
     }
-
     public String getIgv() {
-        return mIgv;
+    return mIgv;
     }
-
     public void setIgv(String igv) {
-        mIgv = igv;
+    mIgv = igv;
     }
-
     public String getMontoTotal() {
-        return mMontoTotal;
+    return mMontoTotal;
     }
-
     public void setMontoTotal(String montoTotal) {
-        mMontoTotal = montoTotal;
+    mMontoTotal = montoTotal;
+    }
+     */
+    public void setSubTotal(float subTotal) {
+        mSubTotal = subTotal;
     }
 
     public boolean isEstado() {
@@ -93,11 +104,11 @@ public class Servicio {
 
     //gurdar concepto en la base de datos
     public void insert() throws Exception{
-        Dao.insert("IGV,MONTO_TOTAL,ID_MASCOTA,ID_CLIENTE,ESTADO",
-                    new String[]{mIgv,mMontoTotal,mMascotaId,mClienteId,"PENDIENTE"},"SERVICIO");
-        getGeneratedId();
-        for(String servicioId:mServicioIdList)
-            Dao.insert("ID_SERVICIO,ID_TIPO_SERVICIO",new String[]{mId,servicioId},"DETALLE_SERVICIO");
+        Dao.insert("ID_MASCOTA,ID_CLIENTE,ID_TIPO_SERVICIO,SUBTOTAL,ESTADO",
+                    new String[]{mMascotaId,mClienteId,mTipoServicioId,mSubTotal+"","PENDIENTE"},"SERVICIO");
+        //getGeneratedId();
+        //for(String servicioId:mServicioIdList)
+          //  Dao.insert("ID_SERVICIO,ID_TIPO_SERVICIO",new String[]{mId,servicioId},"DETALLE_SERVICIO");
         
     }
     

@@ -13,16 +13,13 @@ import Model.TipoServicio;
 import View.frmBuscarCliente;
 import View.frmBuscarMascota;
 import View.frmRegistrarServicio;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Vector;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JRadioButton;
-import javax.swing.JTable;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,7 +32,7 @@ public class ClsRegistrarServicio extends ViewController {
 
     private Mascota mMascota;
     private Cliente mCliente;
-    private ArrayList<TipoServicio> mTipoServicioList;    
+    private ArrayList<TipoServicio> mTipoServicioList;
     private TipoServicio mSelectedServicio;
     private Servicio mServicio;
              
@@ -57,16 +54,19 @@ public class ClsRegistrarServicio extends ViewController {
     private JComboBox mCmbServicioTipo;
     private JTextField mTxtFecha;
     private JTextField mTxtSubTotal;
-    private JTextField mTxtIGV;
-    private JTextField mTxtTotal;
+    private JSpinner mSpnNroDias;
+    //private JTextField mTxtIGV;
+    //private JTextField mTxtTotal;
     private JComponent mBtnGenerar;
-    private JComponent mBtnAgregarServicio;
-    private JComponent mBtnEliminarServicio;
+    //private JComponent mBtnAgregarServicio;
+    //private JComponent mBtnEliminarServicio;
     private JComponent mBtnImprimir;
-    private JComponent mLblTablaVacia;
-    private JTable mTbServicios;
-    private DefaultTableModel mTbModel;
-    //tabla 
+    
+    //private JComponent mLblTablaVacia;
+    //private JTable mTbServicios;
+    //private DefaultTableModel mTbModel;
+    
+//tabla 
         //columnas
     private final String []mTableColumns =new String[]{"Servicio","Precio"};    
     
@@ -136,16 +136,17 @@ public class ClsRegistrarServicio extends ViewController {
                         
             setTiempoActual();
             mCmbServicioTipo.setEnabled(true);
-            calcularMonto();
+            //calcularMonto();
             mBtnGenerar.setEnabled(true);            
-            mBtnAgregarServicio.setEnabled(true);
-            mBtnEliminarServicio.setEnabled(true);
+            //mBtnAgregarServicio.setEnabled(true);
+            //mBtnEliminarServicio.setEnabled(true);
+            
             mBtnImprimir.setEnabled(true);
         }catch(NullPointerException  err){            
-                System.out.println("ClsMantenerMascota: "+err);
+                System.out.println(TAG_ERROR+": "+err);
                 AlertDialogError("Error con el servidor"); 
         }catch(Exception err2){
-            System.out.println("ClsMantenerMascota: "+err2);
+            System.out.println(TAG_ERROR+": "+err2);
             AlertDialogError("No existe el cliente con ese DNI"); 
         }
     }
@@ -161,22 +162,26 @@ public class ClsRegistrarServicio extends ViewController {
         if(mTipoServicioList.isEmpty()){
             try{
                 mTipoServicioList= TipoServicio.getServicioList();
-                mCmbServicioTipo.removeAllItems();
+               
+                //if(mCmbServicioTipo.getItemCount()>0)
+                  //  mCmbServicioTipo.removeAll();
+               
+               
                 for(TipoServicio servicio:mTipoServicioList)  
-                    mCmbServicioTipo.addItem(servicio.getNombre());
+                   mCmbServicioTipo.addItem(servicio.getNombre());
                 
                 
             }catch(NullPointerException  err){            
-                System.out.println("ClsMantenerMascota: "+err);
+                System.out.println(TAG_ERROR+": "+err);
                 AlertDialogError("Error con el servidor"); 
             }catch(Exception err2){
-                System.out.println("ClsMantenerMascota: "+err2);
+                System.out.println(TAG_ERROR+": "+err2);
                 AlertDialogError("Error con el servidor"); 
             }
         }
     }
     
-    
+    /*
     public void agregarServicioATabla(){
         Vector<String> row= new Vector();
         int index=mCmbServicioTipo.getSelectedIndex();
@@ -221,35 +226,60 @@ public class ClsRegistrarServicio extends ViewController {
             mTxtIGV.setText( df.format(igv)+"");
             mTxtTotal.setText( df.format(total)+"");
         }
-    }
+    }*/
     public void registrarServicio(){
         try{
             mServicio.setMascotaId(mMascota.getId());
             mServicio.setClienteId(mCliente.getId());        
-            //mConceptoComprobantePago.setServicioId(mSelectedServicio.getId());
-            mServicio.setIgv(mTxtIGV.getText().replace(",", "."));
-            mServicio.setMontoTotal(mTxtTotal.getText().replace(",", "."));
+            mServicio.setTipoServicioId(mTipoServicioList.get(mCmbServicioTipo.getSelectedIndex()).getId());
+            
+            //mServicio.setIgv(mTxtIGV.getText().replace(",", "."));
+            //mServicio.setMontoTotal(mTxtTotal.getText().replace(",", "."));
+            
             mServicio.setEstado(false);//estado de no cancelado
             mServicio.insert();
             AlertDialog("¡Se ha registrado un nuevo servicio con el código #"+mServicio.getGeneratedId()+" !");
-            clearTable();        
+            
+            //clearTable();        
             mGenerarConceptoComprobantePagoView.setVisible(false);
             reset();
         }catch(NullPointerException  err){            
-                System.out.println("ClsMantenerMascota: "+err);
+                System.out.println(TAG_ERROR+": "+err);
                 AlertDialogError("Error con el servidor"); 
         }catch(Exception err2){
-                System.out.println("ClsMantenerMascota: "+err2);
+                System.out.println(TAG_ERROR+": "+err2);
                 AlertDialogError("Error con el servidor"); 
         }
     }
     
+    //actualizar monto 
+    public void actualizarMonto(){        
+        int index=mCmbServicioTipo.getSelectedIndex();
+        String tipoServicioNombre=mTipoServicioList.get(index).getNombre();
+        boolean esHospitalizacion=tipoServicioNombre.equals("Hospitalización");
+        
+        if(esHospitalizacion)
+            mServicio.setSubTotal(mTipoServicioList.get(index).getPrecio() *Float.parseFloat(mSpnNroDias.getValue().toString()));
+        else
+            mServicio.setSubTotal(mTipoServicioList.get(index).getPrecio());
+        
+        mTxtSubTotal.setText(mServicio.getSubTotal()+"");
+    }
     
+    public void actualizarEstadoSpnNroDiaz(){
+        int index=mCmbServicioTipo.getSelectedIndex();
+        String tipoServicioNombre=mTipoServicioList.get(index).getNombre();
+        boolean esHospitalizacion=tipoServicioNombre.equals("Hospitalización");
+                
+        
+        mSpnNroDias.setEnabled(esHospitalizacion);
+        
+    }
     //vaciar la tabla
-    private void clearTable(){        
+    /*private void clearTable(){        
         mTbModel = new DefaultTableModel(null,mTableColumns);
         mTbServicios.setModel(mTbModel);
-    }
+    }*/
     
     @Override
     public void bind() {
@@ -274,22 +304,25 @@ public class ClsRegistrarServicio extends ViewController {
         mCmbServicioTipo=(JComboBox) mGenerarConceptoComprobantePagoView.getComponentById("servicio_tipo");
         mTxtFecha=(JTextField) mGenerarConceptoComprobantePagoView.getComponentById("servicio_fecha");
         mTxtSubTotal=(JTextField) mGenerarConceptoComprobantePagoView.getComponentById("servicio_subtotal");
-        mTxtIGV=(JTextField) mGenerarConceptoComprobantePagoView.getComponentById("servicio_igv");
-        mTxtTotal=(JTextField) mGenerarConceptoComprobantePagoView.getComponentById("servicio_total");
+        //mTxtIGV=(JTextField) mGenerarConceptoComprobantePagoView.getComponentById("servicio_igv");
+        //mTxtTotal=(JTextField) mGenerarConceptoComprobantePagoView.getComponentById("servicio_total");
         mBtnGenerar= mGenerarConceptoComprobantePagoView.getComponentById("servicio_btngenerar");
         mBtnImprimir= mGenerarConceptoComprobantePagoView.getComponentById("servicio_btnimprimir");
+        mSpnNroDias=(JSpinner) mGenerarConceptoComprobantePagoView.getComponentById("servicio_nrodias");
+        //mComponentList.put("servicio_nrodias",spnNroDias);
+        /*
         mBtnAgregarServicio=mGenerarConceptoComprobantePagoView.getComponentById("servicio_btnagregarservicio");
         mBtnEliminarServicio=mGenerarConceptoComprobantePagoView.getComponentById("servicio_btneliminarservicio");
         mTbServicios=(JTable) mGenerarConceptoComprobantePagoView.getComponentById("servicio_tb");
         mLblTablaVacia=mGenerarConceptoComprobantePagoView.getComponentById("servicio_lbltablavacia"); 
-        
+        */
         //cargar servicios en el combobox
         cargarComboServicios();
         mReady=true;
 
 
         //crear un nuevo table model
-        clearTable();        
+        //clearTable();        
     }
 
     @Override
@@ -317,14 +350,15 @@ public class ClsRegistrarServicio extends ViewController {
             mCmbServicioTipo.setSelectedIndex(0);
         mTxtFecha.setText("--/--/----");
         mTxtSubTotal.setText("00.00");
-        mTxtIGV.setText("00.00");
-        mTxtTotal.setText("00.00");
+        //mTxtIGV.setText("00.00");
+        //mTxtTotal.setText("00.00");
         mBtnGenerar.setEnabled(false);        
-        mBtnAgregarServicio.setEnabled(false);
-        mBtnEliminarServicio.setEnabled(false);
+        //mBtnAgregarServicio.setEnabled(false);
+        //mBtnEliminarServicio.setEnabled(false);
         mBtnImprimir.setEnabled(false);
         
+        mSpnNroDias.setValue(new Integer(0));
         
-        mLblTablaVacia.setVisible(true);
+        //mLblTablaVacia.setVisible(true);
     }
 }

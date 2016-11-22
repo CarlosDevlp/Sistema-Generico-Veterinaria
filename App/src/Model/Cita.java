@@ -20,6 +20,7 @@ public class Cita {
     private String mIdDoctor;
     private Calendar mFecha;
     private String mHora;
+    private String mIdServicio;
     //private Cliente mCliente;
     //private Mascota mMascota;
     
@@ -73,6 +74,14 @@ public class Cita {
     public void setHora(String hora) {
         mHora = hora;
     }
+
+    public String getIdServicio() {
+        return mIdServicio;
+    }
+
+    public void setIdServicio(String idServicio) {
+        mIdServicio = idServicio;
+    }
     
     
 
@@ -93,16 +102,14 @@ public class Cita {
     }*/
  
     public void insert() throws Exception{
-        
-        //String date=mFecha.get(Calendar.YEAR)+"-"+(mFecha.get(Calendar.MONTH)+1)+"-"+mFecha.get(Calendar.DAY_OF_MONTH)+" "+mFecha.get(Calendar.HOUR)+":"+mFecha.get(Calendar.MINUTE)+":"+mFecha.get(Calendar.SECOND);        
-        String date=mFecha.get(Calendar.YEAR)+"-"+(mFecha.get(Calendar.MONTH)+1)+"-"+mFecha.get(Calendar.DAY_OF_MONTH)+" "+mHora+":0";  
-        
+                
+        String date=mFecha.get(Calendar.YEAR)+"-"+(mFecha.get(Calendar.MONTH)+1)+"-"+mFecha.get(Calendar.DAY_OF_MONTH)+" "+mHora+":0";          
         ArrayList<ArrayList<String>> resultList=Dao.select("*", "CITA", "FECHA='"+date+"' AND ID_DOCTOR="+mIdDoctor);
         
         
-        if(resultList.isEmpty())
-            Dao.insert("FECHA,ID_DOCTOR,ID_MASCOTA,ID_CLIENTE",new String[]{date,mIdDoctor,mIdMascota,mIdCliente},"CITA");
-        else 
+        if(resultList.isEmpty()){
+            Dao.insert("FECHA,ID_DOCTOR,ID_MASCOTA,ID_CLIENTE,ID_SERVICIO",new String[]{date,mIdDoctor,mIdMascota,mIdCliente,mIdServicio},"CITA");    
+        }else 
             throw new Exception("No se puede registrar la cita con esa fecha");
           
     }    

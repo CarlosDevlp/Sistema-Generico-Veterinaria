@@ -27,7 +27,7 @@ CREATE TABLE `tipo_servicio` (
   `NOMBRE` varchar(50) DEFAULT NULL,
   `PRECIO` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`ID_TIPO_SERVICIO`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `tipo_servicio` (
 
 LOCK TABLES `tipo_servicio` WRITE;
 /*!40000 ALTER TABLE `tipo_servicio` DISABLE KEYS */;
-INSERT INTO `tipo_servicio` VALUES (1,'Consulta Médica',20),(2,'Hospitalización',60);
+INSERT INTO `tipo_servicio` VALUES (3,'Consulta',20),(4,'Vacunación',40),(5,'Hematologia',40),(6,'Sedimiento urinario',50),(7,'Cultivo y antibiograma',60),(8,'Parvovirosis canina',50),(9,'Panleucopenia felina',40),(10,'Hospitalización',30);
 /*!40000 ALTER TABLE `tipo_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-19  7:59:12
+-- Dump completed on 2016-11-22  1:58:50
